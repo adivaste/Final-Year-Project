@@ -154,7 +154,13 @@ def enter_function(self):
         text = generate_image(username)
         store_secret_text_database(text, username)
         encrypt_split_image(f"{username}.png", f"{username}_part1.png", f"{username}_part2.png")
-        send_email("vasteadi45@gmail.com", "Sample Title", "How are you brother !", f"{username}_part2.png")
+
+        # Added before presentation
+        cursor.execute("SELECT Email FROM registration WHERE username = ?", (username,))
+        userEmail = cursor.fetchone()[0]
+        
+
+        send_email(userEmail, "Authentication Image Part", "Please download the provided image and use it for Authentication purpose.", f"{username}_part2.png")
         messagebox.showinfo("Message", "Image sent to email successfully !")
 
 def browse_image():

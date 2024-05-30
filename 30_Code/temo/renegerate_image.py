@@ -1,4 +1,20 @@
 from PIL import Image, ImageDraw, ImageFont
+import random
+
+words = [
+    "quick", "brown", "fox", "jumps", "over", "lazy", "dog", "bright", "blue", "sky", "beautiful", "sunny", "day",
+    "happy", "cat", "runs", "through", "green", "grass", "under", "big", "yellow", "ball", "flies", "high", "red",
+    "balloon", "chases", "clouds", "tiny", "butterfly", "lands", "on", "flower", "near", "river", "sparkling", "water",
+    "shines", "in", "moonlight", "stars", "twinkle", "above", "quiet", "forest", "full", "life", "during", "night",
+    "soft", "breeze", "whispers", "stories", "among", "trees", "wild", "animals", "rest", "peacefully", "while",
+    "crickets", "sing", "their", "songs", "distant", "owl", "hoots", "echoes", "throughout", "dark", "mountains",
+    "stand", "tall", "against", "silhouetted", "horizon", "early", "morning", "brings", "fresh", "beginnings",
+    "dewdrops", "glisten", "every", "leaf", "bird", "chirps", "melodious", "tune", "world", "awakens", "new", "light",
+    "fills", "air", "with", "warmth", "hope"
+]
+
+def generate_random_sentence(word_list, num_words=4):
+    return ' '.join(random.choices(word_list, k=num_words))
 
 def generate_image(username="newuser"):
     
@@ -21,7 +37,7 @@ def generate_image(username="newuser"):
     text_position = (width // 4, height // 2)
 
     # Add text to the image
-    text = "This is random text"
+    text = generate_random_sentence(words)
     draw.text(text_position, text, font=font, fill=text_color)
 
     # Save or display the image
